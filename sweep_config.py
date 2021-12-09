@@ -458,6 +458,9 @@ def gen_run_config(tech_node=None):
                             elif b == "16":
                                 cmd = "cp ./synthesis/" + tech_node + "/16bit/*.cfg " + "./config/" + path
                                 os.system(cmd)
+                            elif b == "4":
+                                cmd = "cp ./synthesis/" + tech_node + "/4bit/*.cfg " + "./config/" + path
+                                os.system(cmd)
                             else:
                                 raise ValueError("Unknown word bit setting.")
                             
@@ -840,6 +843,9 @@ def gen_run_config(tech_node=None):
                             os.system(cmd)
                         elif b == "16":
                             cmd = "cp ./synthesis/" + tech_node + "/16bit/*.cfg " + "./config/" + path
+                            os.system(cmd)
+                        elif b == "4":
+                            cmd = "cp ./synthesis/" + tech_node + "/4bit/*.cfg " + "./config/" + path
                             os.system(cmd)
                         else:
                             raise ValueError("Unknown word bit setting.")
