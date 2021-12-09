@@ -8,7 +8,8 @@ import numpy as np
 def gen_run_config(tech_node=None):
 
     arch_list = ['proj16_16', 'proj32_32', 'proj64_64', 'proj128_128']
-    network_list = ["alexnet", 'convnet']
+    # network_list = ["alexnet", 'convnet']
+    network_list = ["alexnet_convonly", 'convnet_convonly']
     bit_list = ['8']
     cycle_list = ['16']
     ram_list = ['ddr3_w__spm']
