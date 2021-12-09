@@ -9,11 +9,12 @@ def gen_run_config(tech_node=None):
 
     arch_list = ['proj16_16', 'proj32_32', 'proj64_64', 'proj128_128']
     # network_list = ["alexnet", 'convnet']
-    network_list = ["alexnet_convonly", 'convnet_convonly']
+    network_list = ["alexnet", 'convnet', "alexnet_convonly", 'convnet_convonly']
     bit_list = ['8']
     cycle_list = ['16']
     ram_list = ['ddr3_w__spm']
-    sram_list = ['sram_16_32', 'sram_8_32', 'sram_4_32']
+    # sram_list = ['sram_16_32', 'sram_8_32', 'sram_4_32']
+    sram_list = ['sram_16_16', 'sram_8_16', 'sram_4_16', 'sram_16_8', 'sram_8_8', 'sram_4_8']
 
     for a in arch_list:
         for b in bit_list:
