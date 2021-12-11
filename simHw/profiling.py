@@ -614,7 +614,7 @@ def profiling(
             ideal_start_cycle_filter_rd_sram, \
             ideal_end_cycle_filter_rd_sram = block_trace.sram_profiling(
                         trace_file=path + run_name + "_" + name + "_sram_read.csv",
-                        word_sz_bytes=word_sz_bytes,
+                        word_sz_bytes=1, #hardcode to 1
                         block_sz_bytes=sram_block_sz_bytes,
                         bank=sram_bank,
                         min_addr_word=filter_base,
@@ -766,8 +766,8 @@ def profiling(
             sram_bw_real_ifmap_rd   =   0
         
         if filter_sram_exist == True:
-            sram_bw_ideal_filter_rd =   tot_word_filter_rd_sram  * word_sz_bytes / float(2**30) / ideal_layer_sec
-            sram_bw_real_filter_rd  =   tot_word_filter_rd_sram  * word_sz_bytes / float(2**30) / real_layer_sec
+            sram_bw_ideal_filter_rd =   tot_word_filter_rd_sram  * 1 / float(2**30) / ideal_layer_sec
+            sram_bw_real_filter_rd  =   tot_word_filter_rd_sram  * 1 / float(2**30) / real_layer_sec
         else:
             sram_bw_ideal_filter_rd =   0
             sram_bw_real_filter_rd  =   0
@@ -831,7 +831,7 @@ def profiling(
                             str(tot_word_ifmap_rd_dram * word_sz_bytes) + ",\t" + \
                             str(ideal_start_cycle_filter_rd_dram) + ",\t" + \
                             str(ideal_end_cycle_filter_rd_dram) + ",\t" + \
-                            str(tot_word_filter_rd_dram * word_sz_bytes) + ",\t" + \
+                            str(tot_word_filter_rd_dram * 1) + ",\t" + \
                             str(ideal_start_cycle_ofmap_rd_dram) + ",\t" + \
                             str(ideal_end_cycle_ofmap_rd_dram) + ",\t" + \
                             str(tot_word_ofmap_rd_dram * word_sz_bytes) + ",\t" +\
@@ -843,7 +843,7 @@ def profiling(
                             str(tot_word_ifmap_rd_sram * word_sz_bytes) + ",\t" + \
                             str(ideal_start_cycle_filter_rd_sram) + ",\t" + \
                             str(ideal_end_cycle_filter_rd_sram) + ",\t" + \
-                            str(tot_word_filter_rd_sram * word_sz_bytes) + ",\t" + \
+                            str(tot_word_filter_rd_sram * 1) + ",\t" + \
                             str(ideal_start_cycle_ofmap_rd_sram) + ",\t" + \
                             str(ideal_end_cycle_ofmap_rd_sram) + ",\t" + \
                             str(tot_word_ofmap_rd_sram * word_sz_bytes) + ",\t" + \
@@ -857,7 +857,7 @@ def profiling(
                             str(tot_word_ifmap_rd_dram * word_sz_bytes) + ",\t" + \
                             str(real_start_cycle_filter_rd_dram) + ",\t" + \
                             str(real_end_cycle_filter_rd_dram) + ",\t" + \
-                            str(tot_word_filter_rd_dram * word_sz_bytes) + ",\t" + \
+                            str(tot_word_filter_rd_dram * 1) + ",\t" + \
                             str(real_start_cycle_ofmap_rd_dram) + ",\t" + \
                             str(real_end_cycle_ofmap_rd_dram) + ",\t" + \
                             str(tot_word_ofmap_rd_dram * word_sz_bytes) + ",\t" + \
@@ -869,7 +869,7 @@ def profiling(
                             str(tot_word_ifmap_rd_sram * word_sz_bytes) + ",\t" + \
                             str(real_start_cycle_filter_rd_sram) + ",\t" + \
                             str(real_end_cycle_filter_rd_sram) + ",\t" + \
-                            str(tot_word_filter_rd_sram * word_sz_bytes) + ",\t" + \
+                            str(tot_word_filter_rd_sram * 1) + ",\t" + \
                             str(real_start_cycle_ofmap_rd_sram) + ",\t" + \
                             str(real_end_cycle_ofmap_rd_sram) + ",\t" + \
                             str(tot_word_ofmap_rd_sram * word_sz_bytes) + ",\t" + \
@@ -1008,25 +1008,25 @@ def profiling(
         print("All done for " + name)
 
     dram_bw_ideal_ifmap_rd_all      =   tot_word_ifmap_rd_dram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
-    dram_bw_ideal_filter_rd_all     =   tot_word_filter_rd_dram_all * word_sz_bytes / float(2**30) / ideal_sec_all
+    dram_bw_ideal_filter_rd_all     =   tot_word_filter_rd_dram_all * 1 / float(2**30) / ideal_sec_all
     dram_bw_ideal_ofmap_rd_all      =   tot_word_ofmap_rd_dram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
     dram_bw_ideal_ofmap_wr_all      =   tot_word_ofmap_wr_dram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
     dram_bw_ideal_total_all         =   dram_bw_ideal_ifmap_rd_all + dram_bw_ideal_filter_rd_all + dram_bw_ideal_ofmap_rd_all + dram_bw_ideal_ofmap_wr_all
 
     dram_bw_real_ifmap_rd_all       =   tot_word_ifmap_rd_dram_all  * word_sz_bytes / float(2**30) / real_sec_all
-    dram_bw_real_filter_rd_all      =   tot_word_filter_rd_dram_all * word_sz_bytes / float(2**30) / real_sec_all
+    dram_bw_real_filter_rd_all      =   tot_word_filter_rd_dram_all * 1 / float(2**30) / real_sec_all
     dram_bw_real_ofmap_rd_all       =   tot_word_ofmap_rd_dram_all  * word_sz_bytes / float(2**30) / real_sec_all
     dram_bw_real_ofmap_wr_all       =   tot_word_ofmap_wr_dram_all  * word_sz_bytes / float(2**30) / real_sec_all
     dram_bw_real_total_all          =   dram_bw_real_ifmap_rd_all + dram_bw_real_filter_rd_all + dram_bw_real_ofmap_rd_all + dram_bw_real_ofmap_wr_all
 
     sram_bw_ideal_ifmap_rd_all      =   tot_word_ifmap_rd_sram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
-    sram_bw_ideal_filter_rd_all     =   tot_word_filter_rd_sram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
+    sram_bw_ideal_filter_rd_all     =   tot_word_filter_rd_sram_all  * 1 / float(2**30) / ideal_sec_all
     sram_bw_ideal_ofmap_rd_all      =   tot_word_ofmap_rd_sram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
     sram_bw_ideal_ofmap_wr_all      =   tot_word_ofmap_wr_sram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
     sram_bw_ideal_total_all         =   sram_bw_ideal_ifmap_rd_all + sram_bw_ideal_filter_rd_all + sram_bw_ideal_ofmap_rd_all + sram_bw_ideal_ofmap_wr_all
 
     sram_bw_real_ifmap_rd_all       =   tot_word_ifmap_rd_sram_all  * word_sz_bytes / float(2**30) / real_sec_all
-    sram_bw_real_filter_rd_all      =   tot_word_filter_rd_sram_all  * word_sz_bytes / float(2**30) / real_sec_all
+    sram_bw_real_filter_rd_all      =   tot_word_filter_rd_sram_all  * 1 / float(2**30) / real_sec_all
     sram_bw_real_ofmap_rd_all       =   tot_word_ofmap_rd_sram_all  * word_sz_bytes / float(2**30) / real_sec_all
     sram_bw_real_ofmap_wr_all       =   tot_word_ofmap_wr_sram_all  * word_sz_bytes / float(2**30) / real_sec_all
     sram_bw_real_total_all          =   sram_bw_real_ifmap_rd_all + sram_bw_real_filter_rd_all + sram_bw_real_ofmap_rd_all + sram_bw_real_ofmap_wr_all
